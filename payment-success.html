@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmed - SmartShop</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo"><a href="index.html" style="text-decoration: none; color: inherit;">AI Shopping Assistant 🛍️</a></div>
+        <div style="display: flex; gap: 20px; align-items: center;">
+            <a href="index.html" style="color: #333; text-decoration: none; font-weight: 500;">Home</a>
+            <a href="faq.html" style="color: #333; text-decoration: none; font-weight: 500;">FAQ</a>
+            <div class="cart-box" id="cartBox" onclick="window.location.href='index.html'">
+                <i class="fas fa-shopping-cart"></i> <span id="cartCount">0</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Success Hero Section -->
+    <section class="hero">
+        <div style="max-width: 800px; margin: 0 auto;">
+            <div style="background: rgba(255,255,255,0.2); width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
+                <i class="fas fa-check" style="font-size: 40px; color: white;"></i>
+            </div>
+            <h2>Order Confirmed!</h2>
+            <p>Thank you for your purchase. Your order has been successfully placed.</p>
+        </div>
+    </section>
+
+    <!-- Order Details -->
+    <section style="padding: 40px 20px; max-width: 1000px; margin: 0 auto;">
+        <div style="display: grid; grid-template-columns: 1fr 400px; gap: 40px;">
+            
+            <!-- Left Column - Order Information -->
+            <div>
+                <!-- Order Summary -->
+                <div class="success-section">
+                    <h3 style="margin-bottom: 20px; color: #333; display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-receipt"></i> Order Summary
+                    </h3>
+                    
+                    <div id="orderItems" style="margin-bottom: 20px;">
+                        <!-- Order items will be dynamically inserted here -->
+                    </div>
+                    
+                    <div class="summary-line">
+                        <span>Subtotal</span>
+                        <span id="orderSubtotal">$0.00</span>
+                    </div>
+                    <div class="summary-line">
+                        <span>Shipping</span>
+                        <span id="orderShipping">$0.00</span>
+                    </div>
+                    <div class="summary-line">
+                        <span>Tax</span>
+                        <span id="orderTax">$0.00</span>
+                    </div>
+                    <div class="summary-line total">
+                        <span><strong>Total</strong></span>
+                        <span id="orderTotal"><strong>$0.00</strong></span>
+                    </div>
+                </div>
+
+                <!-- Shipping Information -->
+                <div class="success-section">
+                    <h3 style="margin-bottom: 20px; color: #333; display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-shipping-fast"></i> Shipping Information
+                    </h3>
+                    
+                    <div id="shippingInfo">
+                        <!-- Shipping info will be dynamically inserted here -->
+                    </div>
+                </div>
+
+                <!-- Payment Information -->
+                <div class="success-section">
+                    <h3 style="margin-bottom: 20px; color: #333; display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-credit-card"></i> Payment Information
+                    </h3>
+                    
+                    <div id="paymentInfo">
+                        <!-- Payment info will be dynamically inserted here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column - Order Status & Actions -->
+            <div>
+                <!-- Order Status Card -->
+                <div class="status-card">
+                    <div style="text-align: center; margin-bottom: 25px;">
+                        <div style="background: linear-gradient(135deg, #28a745, #20c997); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;">
+                            <i class="fas fa-check" style="font-size: 24px;"></i>
+                        </div>
+                        <h3 style="color: #28a745; margin-bottom: 5px;">Order Confirmed</h3>
+                        <p style="color: #666; font-size: 14px;">We're preparing your shipment</p>
+                    </div>
+
+                    <div class="status-timeline">
+                        <div class="timeline-item active">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <strong>Order Placed</strong>
+                                <span id="orderDate">Just now</span>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <strong>Processing</strong>
+                                <span>Within 24 hours</span>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <strong>Shipped</strong>
+                                <span id="estimatedShipDate">Tomorrow</span>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <strong>Delivered</strong>
+                                <span id="estimatedDelivery">In 3-5 days</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-top: 20px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                            <span style="font-weight: 500;">Order Number</span>
+                            <span id="orderNumber" style="font-weight: 600; color: #667eea;">Loading...</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span style="font-weight: 500;">Tracking Number</span>
+                            <span id="trackingNumber" style="font-weight: 600; color: #667eea;">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="success-section">
+                    <h4 style="margin-bottom: 15px; color: #333;">What would you like to do next?</h4>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 12px;">
+                        <button class="action-btn primary" onclick="trackOrder()">
+                            <i class="fas fa-shipping-fast"></i> Track Your Order
+                        </button>
+                        <button class="action-btn" onclick="continueShopping()">
+                            <i class="fas fa-shopping-bag"></i> Continue Shopping
+                        </button>
+                        <button class="action-btn" onclick="printOrder()">
+                            <i class="fas fa-print"></i> Print Receipt
+                        </button>
+                        <button class="action-btn" onclick="viewOrderHistory()">
+                            <i class="fas fa-history"></i> View Order History
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Support Card -->
+                <div class="success-section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                    <h4 style="margin-bottom: 10px; display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-headset"></i> Need Help?
+                    </h4>
+                    <p style="margin-bottom: 15px; opacity: 0.9; font-size: 14px;">Our customer support team is here to assist you</p>
+                    <div style="display: flex; gap: 10px;">
+                        <button style="flex: 1; padding: 10px; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3); color: white; border-radius: 6px; cursor: pointer; transition: all 0.3s ease;">
+                            <i class="fas fa-comments"></i> Chat
+                        </button>
+                        <button style="flex: 1; padding: 10px; background: white; border: none; color: #667eea; border-radius: 6px; cursor: pointer; font-weight: 500; transition: all 0.3s ease;">
+                            <i class="fas fa-envelope"></i> Email
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recommended Products -->
+        <div style="margin-top: 50px;">
+            <h3 style="text-align: center; margin-bottom: 30px; color: #333;">You Might Also Like</h3>
+            <div class="product-grid" id="recommendedProducts">
+                <!-- Recommended products will be dynamically inserted here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="margin-top: 60px;">
+        <div style="max-width: 1000px; margin: 0 auto; padding: 0 20px;">
+            <div style="text-align: center; padding-top: 20px; border-top: 1px solid #eee; color: #666;">
+                <p>&copy; 2024 SmartShop. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Success Page Styles -->
+    <style>
+        .success-section {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 25px;
+        }
+
+        .status-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 25px;
+        }
+
+        .summary-line {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .summary-line.total {
+            border-bottom: none;
+            border-top: 2px solid #e9ecef;
+            padding-top: 12px;
+            margin-top: 12px;
+            font-size: 18px;
+        }
+
+        .status-timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .status-timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #e9ecef;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -30px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #e9ecef;
+            border: 3px solid white;
+            box-shadow: 0 0 0 2px #e9ecef;
+        }
+
+        .timeline-item.active .timeline-dot {
+            background: #28a745;
+            box-shadow: 0 0 0 2px #28a745;
+        }
+
+        .timeline-content {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .timeline-content strong {
+            color: #333;
+            font-size: 14px;
+        }
+
+        .timeline-content span {
+            color: #666;
+            font-size: 12px;
+        }
+
+        .timeline-item.active .timeline-content strong {
+            color: #28a745;
+        }
+
+        .action-btn {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e9ecef;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .action-btn.primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-color: #667eea;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+        }
+
+        .order-item {
+            display: flex;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+        }
+
+        .order-item-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .order-item-details {
+            flex: 1;
+        }
+
+        .order-item-name {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .order-item-price {
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .order-item-quantity {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .info-label {
+            font-size: 12px;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .info-value {
+            font-weight: 500;
+            color: #333;
+        }
+
+        @media (max-width: 768px) {
+            .checkout-main {
+                grid-template-columns: 1fr;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Confetti Animation */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #ff0000;
+            opacity: 0;
+            animation: confetti-fall 5s linear forwards;
+            z-index: 1000;
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+
+    <!-- Load cart manager for consistency -->
+    <script src="js/config.js"></script>
+    <script src="js/errorHandler.js"></script>
+    <script src="js/cartManager.js"></script>
+    
+    <script>
+        // Success Page JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize error handler
+            if (typeof ErrorHandler !== 'undefined') {
+                ErrorHandler.init();
+            }
+            
+            // Initialize cart manager (cart should be empty after checkout)
+            if (typeof CartManager !== 'undefined') {
+                window.successCartManager = new CartManager();
+            }
+            
+            loadOrderDetails();
+            createConfetti();
+            loadRecommendedProducts();
+        });
+
+        // Load order details from localStorage
+        function loadOrderDetails() {
+            const order = JSON.parse(localStorage.getItem('currentOrder'));
+            
+            if (!order) {
+                // Redirect to home if no order data
+                window.location.href = 'index.html';
+                return;
+            }
+
+            // Display order items
+            const orderItemsContainer = document.getElementById('orderItems');
+            let itemsHTML = '';
+            
+            order.items.forEach(item => {
+                // Handle price parsing - support various formats
+                const priceStr = item.price || '0';
+                const price = parseFloat(priceStr.replace(/[^0-9.]/g, '')) || 0;
+                const itemTotal = (price * (item.quantity || 1)).toFixed(2);
+                
+                // Handle images
+                const itemImage = (item.images && item.images.length > 0) 
+                    ? item.images[0] 
+                    : 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=100&h=100&fit=crop';
+                
+                itemsHTML += `
+                    <div class="order-item">
+                        <img src="${itemImage}" alt="${escapeHtml(item.name)}" class="order-item-image"
+                             onerror="this.src='https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=100&h=100&fit=crop'">
+                        <div class="order-item-details">
+                            <div class="order-item-name">${escapeHtml(item.name)}</div>
+                            <div class="order-item-price">$${itemTotal}</div>
+                            <div class="order-item-quantity">Quantity: ${item.quantity || 1}</div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            orderItemsContainer.innerHTML = itemsHTML;
+
+            // Display totals
+            document.getElementById('orderSubtotal').textContent = `$${order.totals.subtotal}`;
+            document.getElementById('orderShipping').textContent = order.totals.shipping === '0.00' ? 'FREE' : `$${order.totals.shipping}`;
+            document.getElementById('orderTax').textContent = `$${order.totals.tax}`;
+            document.getElementById('orderTotal').innerHTML = `<strong>$${order.totals.total}</strong>`;
+
+            // Display shipping information
+            const shippingInfoContainer = document.getElementById('shippingInfo');
+            shippingInfoContainer.innerHTML = `
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Name</span>
+                        <span class="info-value">${order.shipping.firstName} ${order.shipping.lastName}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Email</span>
+                        <span class="info-value">${order.shipping.email}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Phone</span>
+                        <span class="info-value">${order.shipping.phone}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Address</span>
+                        <span class="info-value">${order.shipping.address}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">City</span>
+                        <span class="info-value">${order.shipping.city}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">State/ZIP</span>
+                        <span class="info-value">${order.shipping.state} ${order.shipping.zipCode}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Country</span>
+                        <span class="info-value">${getCountryName(order.shipping.country)}</span>
+                    </div>
+                </div>
+            `;
+
+            // Display payment information
+            const paymentInfoContainer = document.getElementById('paymentInfo');
+            paymentInfoContainer.innerHTML = `
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Payment Method</span>
+                        <span class="info-value" style="text-transform: capitalize;">${order.payment.method}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Transaction ID</span>
+                        <span class="info-value">${order.payment.transactionId}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Status</span>
+                        <span class="info-value" style="color: #28a745;">Completed</span>
+                    </div>
+                    ${order.payment.cardLast4 ? `
+                    <div class="info-item">
+                        <span class="info-label">Card Number</span>
+                        <span class="info-value">**** **** **** ${order.payment.cardLast4}</span>
+                    </div>
+                    ` : ''}
+                </div>
+            `;
+
+            // Display order metadata
+            document.getElementById('orderNumber').textContent = order.orderId;
+            document.getElementById('trackingNumber').textContent = order.trackingNumber;
+            document.getElementById('orderDate').textContent = formatDate(order.timestamp);
+            document.getElementById('estimatedDelivery').textContent = formatDate(order.estimatedDelivery);
+            
+            // Set estimated ship date (next day)
+            const shipDate = new Date(order.timestamp);
+            shipDate.setDate(shipDate.getDate() + 1);
+            document.getElementById('estimatedShipDate').textContent = formatDate(shipDate.toISOString());
+        }
+
+        // Get country name from code
+        function getCountryName(code) {
+            const countries = {
+                'US': 'United States',
+                'CA': 'Canada',
+                'UK': 'United Kingdom',
+                'AU': 'Australia',
+                'AE': 'United Arab Emirates',
+                'SA': 'Saudi Arabia',
+                'PK': 'Pakistan',
+                'IN': 'India'
+            };
+            return countries[code] || code;
+        }
+
+        // Format date for display
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+
+        // Create celebration confetti
+        function createConfetti() {
+            const colors = ['#667eea', '#764ba2', '#28a745', '#ff7e5f', '#feb47b', '#ff6b6b'];
+            
+            for (let i = 0; i < 100; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.width = Math.random() * 10 + 5 + 'px';
+                    confetti.style.height = Math.random() * 10 + 5 + 'px';
+                    confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                    
+                    document.body.appendChild(confetti);
+                    
+                    // Remove confetti after animation
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, 5000);
+                }, i * 50);
+            }
+        }
+
+        // Load recommended products
+        function loadRecommendedProducts() {
+            // In a real app, this would be an API call for recommendations
+            // For now, we'll use some sample products
+            const recommendedProducts = [
+                {
+                    name: "Wireless Earbuds Pro",
+                    price: "$129.99",
+                    image: "https://images.unsplash.com/photo-1590658165737-15a047b8b5e3?w=300&h=200&fit=crop",
+                    category: "electronics"
+                },
+                {
+                    name: "Phone Case - Premium",
+                    price: "$24.99",
+                    image: "https://images.unsplash.com/photo-1556656793-08538906a9f8?w=300&h=200&fit=crop",
+                    category: "accessories"
+                },
+                {
+                    name: "Portable Charger 10000mAh",
+                    price: "$39.99",
+                    image: "https://images.unsplash.com/photo-1609592810793-abeb6c64b5c6?w=300&h=200&fit=crop",
+                    category: "electronics"
+                },
+                {
+                    name: "Bluetooth Speaker Mini",
+                    price: "$49.99",
+                    image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=300&h=200&fit=crop",
+                    category: "electronics"
+                }
+            ];
+
+            const container = document.getElementById('recommendedProducts');
+            let productsHTML = '';
+
+            recommendedProducts.forEach(product => {
+                productsHTML += `
+                    <div class="product-card">
+                        <div class="slider">
+                            <img src="${product.image}" alt="${product.name}" class="product-image"
+                                 onerror="this.src='https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=300&h=200&fit=crop'">
+                        </div>
+                        <div class="product-info">
+                            <h4>${product.name}</h4>
+                            <p class="product-description">High-quality ${product.category} with premium features</p>
+                            <div class="product-meta">
+                                <span class="price">${product.price}</span>
+                                <span class="category-badge">${product.category}</span>
+                            </div>
+                            <button class="add-btn" onclick="addToCartFromRecommendation('${product.name}', '${product.price}', '${product.image}')">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = productsHTML;
+        }
+
+        // Action Functions
+        function trackOrder() {
+            const order = JSON.parse(localStorage.getItem('currentOrder'));
+            if (order && order.trackingNumber) {
+                alert(`Tracking your order: ${order.trackingNumber}\n\nIn a real application, this would redirect to the carrier's tracking page.`);
+            }
+        }
+
+        function continueShopping() {
+            window.location.href = 'index.html';
+        }
+
+        function printOrder() {
+            window.print();
+        }
+
+        function viewOrderHistory() {
+            alert('In a real application, this would redirect to your order history page.');
+        }
+
+        // Helper function to escape HTML
+        function escapeHtml(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function addToCartFromRecommendation(name, price, image) {
+            // Use cart manager if available, otherwise fallback to direct localStorage
+            if (window.successCartManager) {
+                const product = {
+                    _id: 'rec-' + Date.now(),
+                    name: name,
+                    price: price,
+                    images: [image],
+                    quantity: 1,
+                    category: 'electronics',
+                    description: 'Recommended product'
+                };
+                window.successCartManager.addToCart(product);
+            } else {
+                // Fallback to direct localStorage manipulation
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            
+            const existingItem = cart.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                        _id: 'rec-' + Date.now(),
+                    name: name,
+                    price: price,
+                    images: [image],
+                    quantity: 1,
+                    category: 'electronics'
+                });
+            }
+            
+            localStorage.setItem('cart', JSON.stringify(cart));
+                
+                // Update cart count
+                const cartCount = document.getElementById('cartCount');
+                if (cartCount) {
+                    const total = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+                    cartCount.textContent = total;
+                }
+            }
+            
+            // Show success message
+            showNotification(`${name} added to cart!`, 'success');
+        }
+
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `checkout-notification checkout-notification-${type}`;
+            notification.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-${type === 'error' ? 'exclamation-triangle' : 'check-circle'}"></i>
+                    <span>${message}</span>
+                </div>
+                <button onclick="this.parentElement.remove()" style="background: none; border: none; color: inherit; cursor: pointer;">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: ${type === 'error' ? '#dc3545' : type === 'success' ? '#28a745' : '#17a2b8'};
+                color: white;
+                padding: 15px 20px;
+                border-radius: 8px;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+                z-index: 1000;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 15px;
+                max-width: 400px;
+                animation: slideInRight 0.3s ease;
+            `;
+
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                if (notification.parentElement) {
+                    notification.remove();
+                }
+            }, 3000);
+        }
+
+        // Add CSS for notification animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideInRight {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Update cart count on page load (should be 0 after checkout)
+        document.addEventListener('DOMContentLoaded', function() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartCount = document.getElementById('cartCount');
+            if (cartCount) {
+                const total = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+                cartCount.textContent = total;
+            }
+        });
+    </script>
+</body>
+</html>

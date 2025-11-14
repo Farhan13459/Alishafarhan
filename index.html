@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopSmart AI - Intelligent E-commerce Assistant</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Product Detail Modal -->
+  <div class="product-detail-modal hidden" id="productDetailModal">
+    <div class="product-detail-content" id="productDetailContent">
+        <!-- Product detail content will be inserted here by JavaScript -->
+    </div>
+  </div>
+  
+  <!-- Navigation Header -->
+  <header class="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <i class="fas fa-robot"></i>
+        <span>ShopSmart AI</span>
+      </div>
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="products.html" class="nav-link">Products</a>
+        <a href="categories.html" class="nav-link">Categories</a>
+        <a href="faq.html" class="nav-link">FAQ</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="nav-btn search-btn" id="searchToggle">
+          <i class="fas fa-search"></i>
+        </button>
+        <button class="nav-btn cart-btn" id="cartToggle">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="cart-count">0</span>
+        </button>
+        <button class="nav-btn user-btn" id="userToggle">
+          <i class="fas fa-user"></i>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Search Bar -->
+    <div class="search-container hidden" id="searchContainer">
+      <div class="search-box">
+        <input type="text" id="globalSearch" placeholder="Search products, brands, categories...">
+        <button class="search-submit">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-container">
+      <div class="hero-content">
+        <h1 class="hero-title">
+          Welcome to <span class="gradient-text">ShopSmart AI</span>
+        </h1>
+        <p class="hero-subtitle">
+          Your intelligent shopping assistant powered by AI. Find exactly what you need with natural conversations.
+        </p>
+        <div class="hero-features">
+          <div class="feature">
+            <i class="fas fa-comments"></i>
+            <span>Chat in any language</span>
+          </div>
+          <div class="feature">
+            <i class="fas fa-camera"></i>
+            <span>Search with images</span>
+          </div>
+          <div class="feature">
+            <i class="fas fa-bolt"></i>
+            <span>Instant recommendations</span>
+          </div>
+        </div>
+        <div class="hero-actions">
+          <button class="btn btn-primary" id="startChatBtn">
+            <i class="fas fa-comment-dots"></i>
+            Start Chatting
+          </button>
+          <button class="btn btn-secondary" id="browseProductsBtn">
+            <i class="fas fa-shopping-bag"></i>
+            Browse Products
+          </button>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="chat-preview">
+          <div class="chat-message user">
+            <div class="message-avatar">
+              <i class="fas fa-user"></i>
+            </div>
+            <div class="message-content">
+              Show me running shoes under $100
+            </div>
+          </div>
+          <div class="chat-message bot">
+            <div class="message-avatar">
+              <i class="fas fa-robot"></i>
+            </div>
+            <div class="message-content">
+              Found 15 running shoes under $100! Here are the best matches...
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI Chat Assistant Section -->
+  <section class="chat-section" id="chatSection">
+    <div class="container">
+      <div class="section-header">
+        <h2>AI Shopping Assistant</h2>
+        <p>Chat naturally and find products effortlessly</p>
+      </div>
+      
+      <div class="chat-container">
+        <div class="chat-header">
+          <div class="chat-info">
+            <div class="chat-avatar">
+              <i class="fas fa-robot"></i>
+            </div>
+            <div class="chat-details">
+              <h3>ShopSmart AI</h3>
+              <p class="status online">
+                <i class="fas fa-circle"></i>
+                Online
+              </p>
+            </div>
+          </div>
+          <div class="chat-actions">
+            <button class="action-btn" id="clearChat" title="Clear chat">
+              <i class="fas fa-trash"></i>
+            </button>
+            <button class="action-btn" id="minimizeChat" title="Minimize">
+              <i class="fas fa-minus"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="chat-messages" id="chatMessages">
+          <div class="message bot-message">
+            <div class="message-avatar">
+              <i class="fas fa-robot"></i>
+            </div>
+            <div class="message-content">
+              <p>Hello! I'm your AI shopping assistant. I can help you:</p>
+              <ul>
+                <li>Find products using natural language</li>
+                <li>Search with images or descriptions</li>
+                <li>Compare prices and features</li>
+                <li>Get personalized recommendations</li>
+              </ul>
+              <p>What would you like to shop for today?</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="quick-suggestions">
+          <button class="suggestion-btn" data-query="gaming laptops under $1000">
+            <i class="fas fa-laptop"></i>
+            Gaming Laptops
+          </button>
+          <button class="suggestion-btn" data-query="wireless headphones">
+            <i class="fas fa-headphones"></i>
+            Headphones
+          </button>
+          <button class="suggestion-btn" data-query="running shoes for men">
+            <i class="fas fa-running"></i>
+            Running Shoes
+          </button>
+          <button class="suggestion-btn" data-query="smartphones with good camera">
+            <i class="fas fa-mobile-alt"></i>
+            Smartphones
+          </button>
+        </div>
+
+        <div class="chat-input-container">
+          <div class="input-actions">
+            <button class="input-btn" id="imageUploadBtn" title="Upload image">
+              <i class="fas fa-camera"></i>
+            </button>
+            <button class="input-btn" id="voiceInputBtn" title="Voice input">
+              <i class="fas fa-microphone"></i>
+            </button>
+            <button class="input-btn" id="attachFileBtn" title="Attach file">
+              <i class="fas fa-paperclip"></i>
+            </button>
+          </div>
+          <div class="input-wrapper">
+            <input type="text" 
+                   id="chatInput" 
+                   placeholder="Type your message... (e.g., 'Show me red dresses under $50')"
+                   autocomplete="off">
+            <div class="input-hints">
+              Try: "laptops for programming" or "kitchen appliances on sale"
+            </div>
+          </div>
+          <button class="send-btn" id="sendMessageBtn">
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Why Choose ShopSmart AI?</h2>
+        <p>Experience the future of online shopping</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-language"></i>
+          </div>
+          <h3>Multi-language Support</h3>
+          <p>Chat in English, Spanish, French, or any language. Our AI understands them all.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-image"></i>
+          </div>
+          <h3>Visual Search</h3>
+          <p>Upload images to find similar products or describe what you're looking for.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-bolt"></i>
+          </div>
+          <h3>Instant Results</h3>
+          <p>Get real-time product matches with prices, ratings, and availability.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3>Smart Recommendations</h3>
+          <p>Personalized suggestions based on your preferences and browsing history.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Shopping Cart Sidebar -->
+  <div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h3>Your Cart</h3>
+      <button class="close-cart" id="closeCart">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="cart-content">
+      <div class="empty-cart">
+        <i class="fas fa-shopping-cart"></i>
+        <p>Your cart is empty</p>
+        <button class="btn btn-outline" id="startShoppingBtn">
+          Start Shopping
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- User Menu Sidebar -->
+  <div class="user-sidebar" id="userSidebar">
+    <div class="user-header">
+      <h3>Account</h3>
+      <button class="close-user" id="closeUser">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="user-content">
+      <div class="user-options">
+        <a href="#" class="user-option">
+          <i class="fas fa-user"></i>
+          Profile
+        </a>
+        <a href="#" class="user-option">
+          <i class="fas fa-heart"></i>
+          Wishlist
+        </a>
+        <a href="#" class="user-option">
+          <i class="fas fa-history"></i>
+          Order History
+        </a>
+        <a href="#" class="user-option">
+          <i class="fas fa-cog"></i>
+          Settings
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Overlay -->
+  <div class="overlay hidden" id="overlay"></div>
+
+  <!-- Scripts -->
+  <script src="config.js"></script>
+  <script src="utils.js"></script>
+  <script src="cartManager.js"></script>
+  <script src="chatEngine.js"></script>
+  <script src="productService.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>

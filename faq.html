@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Shipping & Payments | Smart Shopping</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo"><a href="index.html" style="text-decoration: none; color: inherit;">AI Shopping Assistant 🛍️</a></div>
+        <div style="display: flex; gap: 20px; align-items: center;">
+            <a href="index.html" style="color: #333; text-decoration: none; font-weight: 500;">Home</a>
+            <a href="faq.html" style="color: #333; text-decoration: none; font-weight: 500;">FAQ</a>
+            <div class="cart-box" id="cartBox" onclick="window.location.href='index.html'">
+                <i class="fas fa-shopping-cart"></i> <span id="cartCount">0</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- FAQ Hero Section -->
+    <section class="hero">
+        <div style="max-width: 800px; margin: 0 auto;">
+            <h2>Frequently Asked Questions</h2>
+            <p>Find answers to common questions about shipping, payments, returns, and more</p>
+        </div>
+    </section>
+
+    <!-- FAQ Search Section -->
+    <section style="padding: 30px 20px; background: #f8f9fa;">
+        <div style="max-width: 600px; margin: 0 auto;">
+            <div style="position: relative;">
+                <input type="text" id="faqSearch" placeholder="Search questions..." 
+                       style="width: 100%; padding: 15px 50px 15px 20px; border: 2px solid #e9ecef; border-radius: 25px; font-size: 16px; outline: none; transition: all 0.3s ease;">
+                <i class="fas fa-search" style="position: absolute; right: 20px; top: 50%; transform: translateY(-50%); color: #667eea; font-size: 18px;"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Main Content -->
+    <section style="padding: 40px 20px; max-width: 1000px; margin: 0 auto;">
+        <!-- Category Tabs -->
+        <div style="display: flex; justify-content: center; gap: 10px; margin-bottom: 40px; flex-wrap: wrap;">
+            <button class="faq-tab active" data-category="all">All Questions</button>
+            <button class="faq-tab" data-category="shipping">Shipping</button>
+            <button class="faq-tab" data-category="payments">Payments</button>
+            <button class="faq-tab" data-category="returns">Returns</button>
+            <button class="faq-tab" data-category="account">Account</button>
+        </div>
+
+        <!-- FAQ Accordion -->
+        <div class="faq-container">
+            <!-- Shipping Questions -->
+            <div class="faq-category" data-category="shipping">
+                <h3 style="color: #667eea; margin-bottom: 20px; font-size: 24px; display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-shipping-fast"></i> Shipping & Delivery
+                </h3>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What are your delivery times?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Standard delivery takes 3-5 business days. Express delivery is available for 1-2 business days at an additional cost. International shipping may take 7-14 business days depending on the destination.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How much does shipping cost?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Free standard shipping on all orders over $50. For orders below $50, standard shipping is $4.99. Express shipping is $9.99 for all orders.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Do you offer international shipping?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, we ship to over 50 countries worldwide. International shipping costs vary by destination and are calculated at checkout. Delivery times typically range from 7-14 business days.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How can I track my order?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Once your order ships, you'll receive a tracking number via email. You can track your package using our order tracking page or directly with the carrier.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What if I'm not home during delivery?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>For standard delivery, packages will be left in a safe place. For high-value items requiring signature, the carrier will attempt delivery 3 times before returning to sender. You can also redirect to a pickup location.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payment Questions -->
+            <div class="faq-category" data-category="payments">
+                <h3 style="color: #667eea; margin-bottom: 20px; font-size: 24px; display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-credit-card"></i> Payments & Security
+                </h3>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What payment methods do you accept?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We accept all major credit cards (Visa, MasterCard, American Express), PayPal, Apple Pay, Google Pay, and bank transfers. All payments are processed securely through encrypted channels.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Is my payment information secure?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, we use industry-standard SSL encryption to protect your payment information. We never store your complete payment details on our servers. All transactions are processed through PCI-DSS compliant payment gateways.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Do you offer installment plans?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, we offer installment plans through PayPal Credit and Affirm for orders over $100. You can choose installment options at checkout with 0% interest available on select items.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Why was my payment declined?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Payment declines can occur due to insufficient funds, incorrect card information, security checks by your bank, or international transaction restrictions. Please contact your bank or try a different payment method.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>When will my card be charged?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Your card is authorized when you place the order, but the actual charge occurs when your order ships. For pre-orders, you'll be charged 1-2 days before the release date.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Returns Questions -->
+            <div class="faq-category" data-category="returns">
+                <h3 style="color: #667eea; margin-bottom: 20px; font-size: 24px; display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-undo-alt"></i> Returns & Refunds
+                </h3>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What is your return policy?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We offer a 30-day return policy for most items. Products must be unused, in original packaging with all tags attached. Some items like electronics have specific return conditions.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How do I return an item?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Start a return through your account page, print the return label, and ship the item back to us. Once we receive and inspect the item, we'll process your refund within 3-5 business days.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How long do refunds take?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Refunds are processed within 3-5 business days after we receive your return. It may take 5-10 additional business days for the refund to appear in your account, depending on your bank.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Do you offer exchanges?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, we offer size and color exchanges for most items. If the exchange item is available, we'll ship it immediately. Otherwise, we'll process a refund and you can place a new order.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Account Questions -->
+            <div class="faq-category" data-category="account">
+                <h3 style="color: #667eea; margin-bottom: 20px; font-size: 24px; display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-user-circle"></i> Account & Support
+                </h3>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How do I create an account?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Click the "Sign Up" button in the top navigation, enter your email address, create a password, and verify your email. You can also create an account during checkout.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>I forgot my password. How can I reset it?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Click "Forgot Password" on the login page, enter your email address, and we'll send you a password reset link. The link expires in 2 hours for security.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How do I contact customer support?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You can reach our support team via email at support@smartshop.com, through our live chat during business hours (9 AM - 6 PM EST), or by calling 1-800-SMART-SHOP.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Support Section -->
+        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 40px; border-radius: 16px; text-align: center; margin-top: 50px;">
+            <h3 style="margin-bottom: 15px; font-size: 24px;">Still have questions?</h3>
+            <p style="margin-bottom: 25px; opacity: 0.9;">Our customer support team is here to help you</p>
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                <button style="padding: 12px 25px; background: rgba(255,255,255,0.2); border: 2px solid white; color: white; border-radius: 25px; cursor: pointer; transition: all 0.3s ease;">
+                    <i class="fas fa-comments"></i> Live Chat
+                </button>
+                <button style="padding: 12px 25px; background: white; border: none; color: #667eea; border-radius: 25px; cursor: pointer; font-weight: 600; transition: all 0.3s ease;">
+                    <i class="fas fa-envelope"></i> Email Support
+                </button>
+                <button style="padding: 12px 25px; background: transparent; border: 2px solid white; color: white; border-radius: 25px; cursor: pointer; transition: all 0.3s ease;">
+                    <i class="fas fa-phone"></i> Call Us
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer" style="margin-top: 60px;">
+        <div style="max-width: 1000px; margin: 0 auto; padding: 0 20px;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 30px;">
+                <div>
+                    <h4 style="margin-bottom: 15px; color: #333;">SmartShop</h4>
+                    <p style="color: #666; line-height: 1.6;">Your AI-powered shopping assistant for a seamless shopping experience.</p>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 15px; color: #333;">Quick Links</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li><a href="index.html" style="color: #666; text-decoration: none; line-height: 2;">Home</a></li>
+                        <li><a href="faq.html" style="color: #666; text-decoration: none; line-height: 2;">FAQ</a></li>
+                        <li><a href="#" style="color: #666; text-decoration: none; line-height: 2;">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 15px; color: #333;">Contact Info</h4>
+                    <p style="color: #666; line-height: 1.6;">
+                        <i class="fas fa-envelope"></i> support@smartshop.com<br>
+                        <i class="fas fa-phone"></i> 1-800-SMART-SHOP<br>
+                        <i class="fas fa-clock"></i> Mon-Fri: 9AM-6PM EST
+                    </p>
+                </div>
+            </div>
+            <div style="text-align: center; padding-top: 20px; border-top: 1px solid #eee; color: #666;">
+                <p>&copy; 2024 SmartShop. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Add this CSS to your style.css file -->
+    <style>
+        /* FAQ Specific Styles */
+        .faq-tab {
+            padding: 12px 24px;
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            color: #666;
+        }
+
+        .faq-tab.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-color: #667eea;
+        }
+
+        .faq-tab:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .faq-question {
+            padding: 20px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            color: #333;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: #f8f9fa;
+        }
+
+        .faq-question i {
+            transition: transform 0.3s ease;
+            color: #667eea;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 25px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 20px 25px;
+            max-height: 500px;
+        }
+
+        .faq-answer p {
+            color: #666;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* Search highlight */
+        .highlight {
+            background: yellow;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        /* No results message */
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+            display: none;
+        }
+
+        /* Button hover effects */
+        button:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+
+    <script>
+        // FAQ Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Accordion functionality
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    // Close all other items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    // Toggle current item
+                    item.classList.toggle('active');
+                });
+            });
+
+            // Tab functionality
+            const tabs = document.querySelectorAll('.faq-tab');
+            const categories = document.querySelectorAll('.faq-category');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Update active tab
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    
+                    const category = tab.dataset.category;
+                    
+                    // Show/hide categories
+                    categories.forEach(cat => {
+                        if (category === 'all' || cat.dataset.category === category) {
+                            cat.style.display = 'block';
+                        } else {
+                            cat.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            // Search functionality
+            const searchInput = document.getElementById('faqSearch');
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                const questions = document.querySelectorAll('.faq-question span');
+                let hasResults = false;
+
+                questions.forEach(question => {
+                    const questionText = question.textContent.toLowerCase();
+                    const faqItem = question.closest('.faq-item');
+                    const category = faqItem.closest('.faq-category');
+                    
+                    if (questionText.includes(searchTerm)) {
+                        faqItem.style.display = 'block';
+                        category.style.display = 'block';
+                        hasResults = true;
+                        
+                        // Highlight matching text
+                        if (searchTerm) {
+                            const regex = new RegExp(searchTerm, 'gi');
+                            question.innerHTML = question.textContent.replace(regex, match => 
+                                `<span class="highlight">${match}</span>`
+                            );
+                        }
+                    } else {
+                        faqItem.style.display = 'none';
+                    }
+                });
+
+                // Show/hide no results message
+                const noResults = document.querySelector('.no-results') || createNoResultsMessage();
+                noResults.style.display = hasResults ? 'none' : 'block';
+            });
+
+            function createNoResultsMessage() {
+                const message = document.createElement('div');
+                message.className = 'no-results';
+                message.innerHTML = '<p>No questions found matching your search. Try different keywords or contact our support team.</p>';
+                document.querySelector('.faq-container').appendChild(message);
+                return message;
+            }
+        });
+        
+        // Update cart count on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartCount = document.getElementById('cartCount');
+            if (cartCount) {
+                const total = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+                cartCount.textContent = total;
+            }
+        });
+    </script>
+</body>
+</html>
