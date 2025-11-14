@@ -1,0 +1,18 @@
+[
+  {
+    "id": "user-1762590435799",
+    "email": "farhan@gmail.com",
+    "name": "Farhan Ullah",
+    "password": "$2b$10$OHopXvFe4Io4eiOMtzGgTuZca9nogrvE76BQ8SxYjxp4W8FTqcGuy",
+    "role": "admin",
+    "createdAt": "2025-11-08T08:27:15.799Z"
+  },
+  {
+    "id": "user-1763061576607",
+    "email": "admin@shop.com",
+    "name": "Admin Name",
+    "password": "$2b$10$RrHcSM0YpSTOltpdq6bkhu4XKjEH2P9mm0P6pSuDZ2J8pfdgQzu9a",
+    "role": "admin",
+    "createdAt": "2025-11-13T19:19:36.607Z"
+  }
+]
